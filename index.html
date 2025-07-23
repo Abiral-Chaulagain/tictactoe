@@ -78,6 +78,8 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
+    circle_icon = "img/circle.png";
+    cross_icon = "img/cross.png";
     let grid = [
       ["0", "0", "0"],
       ["0", "0", "0"],
@@ -268,10 +270,10 @@
       if (grid[x][y] == "0") {
         a = req_symbol();
         if (a == "X") {
-          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src=cross.png/>");
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src="+cross_icon+"/>");
         }
         else if (a == "O") {
-          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src = circle.png/>");
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src ="+circle_icon+"/>");
         }
 
       }
