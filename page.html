@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="header-wrapper">
+    <h1 class="header">TicTacToe</h1>
+  </div>
+  <div class="body-wrapper">
+    <div class="tictactoe-wrapper">
+      <div class="horizontal-crossout-1"></div>
+      <div class="horizontal-crossout-2"></div>
+      <div class="horizontal-crossout-3"></div>
+      <div class="vertical-crossout-1"></div>
+      <div class="vertical-crossout-2"></div>
+      <div class="vertical-crossout-3"></div>
+      <div class="slantdown-crossout"></div>
+      <div class="slantup-crossout"></div>
+      <div class="tictactoe-column-wrapper">
+        <div class="tictactoe-column">
+          <div class="tictactoe-cell" id="0"></div>
+          <div class="tictactoe-row-divider-top"></div>
+          <div class="tictactoe-cell" id="1"></div>
+          <div class="tictactoe-row-divider-top"></div>
+          <div class="tictactoe-cell" id="2"></div>
+        </div>
+      </div>
+      <div class="tictactoe-column-divider"></div>
+      <div class="tictactoe-column-wrapper">
+        <div class="tictactoe-column">
+          <div class="tictactoe-cell" id="3"></div>
+          <div class="tictactoe-row-divider"></div>
+          <div class="tictactoe-cell" id="4"></div>
+          <div class="tictactoe-row-divider"></div>
+          <div class="tictactoe-cell" id="5"></div>
+        </div>
+      </div>
+      <div class="tictactoe-column-divider"></div>
+      <div class="tictactoe-column-wrapper">
+        <div class="tictactoe-column">
+          <div class="tictactoe-cell" id="6"></div>
+          <div class="tictactoe-row-divider-bot"></div>
+          <div class="tictactoe-cell" id="7"></div>
+          <div class="tictactoe-row-divider-bot"></div>
+          <div class="tictactoe-cell" id="8"></div>
+        </div>
+      </div>
+    </div>
+    <div class="player-names-wrapper">
+      <div class="player-wrapper-active" id=P1>
+        <h2 class="player-name">Player 1</h2>
+      </div>
+      <div class="player-wrapper" id=P2>
+        <h2 class="player-name">Player 2</h2>
+      </div>
+    </div>
+    <div class="details-wrapper">
+      <button class="reset">Reset</button>
+    </div>
+    <div class="popup-overlay"></div>
+    <div class="popup" id="gameend">
+      <p class="popup-msg"id="gameend"></p>
+      <button class="popup-btn" id="gameend">Reset Game</button>
+    </div>
+    <div class="popup" id="slotfilled">
+      <p>Slot is already occupied</p> 
+      <button class="popup-btn" id="slotfilled">OK</button>
+    </div>
+  </div>
+  <!--- jquery cdn script-->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    let grid = [
+      ["0", "0", "0"],
+      ["0", "0", "0"],
+      ["0", "0", "0"],
+    ];
+    let gameend = false;
+    var winner = "0";
+    // p1 is false p2 is true. p1 starts
+    var player = false;
+    //empty spaces
+    var count = 9;
+
+    function req_symbol() {
+      if (player == false)
+        return "X";
+      else
+        return "O";
+    }
+
+    function check_winner() {
+
+      //horizontal checks
+      for (let i = 0; i <= 2; i++) {
+        if (grid[0][i] == grid[1][i] && grid[0][i] == grid[2][i]) {
+          if (grid[0][i] == "X" || grid[0][i] == "O") {
+            is_winner = true;
+            gameend = true;
+            winner = grid[0][i];
+            $(".horizontal-crossout-" + (i + 1)).toggle();
+          }
+        };
+      }
+
+      //vertical checks
+      for (let i = 0; i <= 2; i++) {
+        if (grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2]) {
+          if (grid[i][0] == "X" || grid[i][0] == "O") {
+            is_winner = true;
+            gameend = true;
+            winner = grid[i][0];
+            $(".vertical-crossout-" + (i + 1)).toggle();
+          }
+        };
+      }
+
+      //cross checks
+      if (grid[0][0] == grid[1][1] && grid[0][0] == grid[2][2]) {
+        if (grid[1][1] == "X" || grid[1][1] == "O") {
+          is_winner = true;
+          gameend = true;
+          winner = grid[1][1];
+          $(".slantdown-crossout").toggle();
+        }
+      };
+      if (grid[0][2] == grid[1][1] && grid[0][2] == grid[2][0]) {
+        if (grid[1][1] == "X" || grid[1][1] == "O") {
+          is_winner = true;
+          gameend = true;
+          winner = grid[1][1];
+          $(".slantup-crossout").toggle();
+        }
+      };
+    }
+
+
+    function on_click() {
+      if (gameend == true)
+        game_end();
+      cell_id = $(this).attr("id");
+      x = cell_id % 3;
+      y = Math.floor(cell_id / 3);
+      symbol = req_symbol();
+      symbol_added = false;
+
+      //remove the hover class with the id(ig id doesnt matter?)
+      $(".tictactoe-icon-hover[id=" + cell_id + "]").remove();
+
+      //add into grid 
+      //check if space is free 
+      if (grid[x][y] == "0") {
+        grid[x][y] = symbol;
+        //add symbol into page 
+        if (symbol == "X") {
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon id = " + cell_id + " src=cross.png/>");
+        }
+        else if (symbol == "O") {
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon id = " + cell_id + " src = circle.png/>");
+        }
+        symbol_added = !symbol_added;
+        count--;
+      }
+      //add alert later
+      else {
+        showpopup_slotfilled();
+        return;
+      }
+      check_winner();
+
+      //check if all cells are filled
+      check_gameend();
+
+      if (gameend == true) {
+        game_end();
+      }
+      //swap players after click
+      if (symbol_added == true)
+        swap_players();
+    }
+
+
+    function check_gameend() {
+      if (count == 0)
+        gameend = true;
+    }
+
+
+    function swap_players() {
+      $("#P1").toggleClass("player-wrapper-active player-wrapper");
+      $("#P2").toggleClass("player-wrapper-active player-wrapper");
+
+      player = !player;
+    }
+
+    function reset_game() {
+      //reset grid to empty
+      for (let i = 0; i <= 2; i++) {
+        for (let j = 0; j <= 2; j++) {
+          grid[i][j] = "0";
+        }
+      }
+      //remove the icons
+      $(".tictactoe-icon").remove();
+      //remove crossouts
+      for (let i = 0; i <= 2; i++) {
+        $(".horizontal-crossout-" + (i + 1)).css("display", "none");
+        $(".vertical-crossout-" + (i + 1)).css("display", "none");
+      }
+      $(".slantdown-crossout").css("display", "none");
+      $(".slantup-crossout").css("display", "none");
+
+      //reset player-actives
+      $("#P1").removeClass("player-wrapper").addClass("player-wrapper-active");
+      $("#P2").removeClass("player-wrapper-active").addClass("player-wrapper");
+
+      //reset variables 
+      gameend = false;
+      winner = "0";
+      player = false;
+      count = 9;
+
+    }
+
+    function game_end() {
+      if (winner == "X" || winner == "O")
+        showpopup_gameend(winner + " wins the game.");
+      else if (count == 0)
+        showpopup_gameend("It's a draw.");
+    }
+
+    function showpopup_gameend(message) {
+      $(".popup-msg[id=gameend]").text(message);
+      $(".popup-overlay").fadeIn();
+      $(".popup[id=gameend]").fadeIn();
+    }
+
+    function showpopup_slotfilled(){
+      $(".popup-overlay").fadeIn();
+      $(".popup[id=slotfilled]").fadeIn();
+    }
+
+    $(".popup-btn[id = gameend]").click(function () {
+      $(".popup, .popup-overlay").fadeOut();
+      reset_game();
+    })
+
+    $(".popup-btn[id = slotfilled]").click(function(){
+      $(".popup, .popup-overlay").fadeOut();
+    })
+
+    $(".tictactoe-cell").on("click", on_click);
+
+    $(".tictactoe-cell").on("mouseenter", function () {
+
+      //hoverin
+      cell_id = $(this).attr("id");
+      x = cell_id % 3;
+      y = Math.floor(cell_id / 3);
+      if (grid[x][y] == "0") {
+        a = req_symbol();
+        if (a == "X") {
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src=cross.png/>");
+        }
+        else if (a == "O") {
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src = circle.png/>");
+        }
+
+      }
+
+    }).on("mouseleave", function () {
+      //hoverout
+      cell_id = $(this).attr("id");
+      //remove the hover class with the id(ig id doesnt matter?)
+      $(".tictactoe-icon-hover[id=" + cell_id + "]").remove();
+
+    })
+
+    $(".reset").on("click", function(){
+      reset_game();
+    })
+
+    $(function () {
+      console.log("ready");
+    });
+
+  </script>
+</body>
+
+</html>
