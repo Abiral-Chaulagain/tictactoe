@@ -78,8 +78,8 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script>
-    circle_icon = "https://raw.githubusercontent.com/Abiral-Chaulagain/tictactoe/refs/heads/main/icons/circle.png ";
-    cross_icon = "https://raw.githubusercontent.com/Abiral-Chaulagain/tictactoe/refs/heads/main/icons/cross.png";
+    circle_icon = "icons/circle.png";
+    cross_icon = "icons/cross.png";
     let grid = [
       ["0", "0", "0"],
       ["0", "0", "0"],
@@ -163,10 +163,10 @@
         grid[x][y] = symbol;
         //add symbol into page 
         if (symbol == "X") {
-          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon id = " + cell_id + " src="+cross_icon+"/>");
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon id = " + cell_id + " src="+cross_icon+" />");
         }
         else if (symbol == "O") {
-          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon id = " + cell_id + " src="+circle_icon+"/>");
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon id = " + cell_id + " src="+circle_icon+" />");
         }
         symbol_added = !symbol_added;
         count--;
@@ -270,10 +270,10 @@
       if (grid[x][y] == "0") {
         a = req_symbol();
         if (a == "X") {
-          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src="+cross_icon+"/>");
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src="+cross_icon+" />");
         }
         else if (a == "O") {
-          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src="+circle_icon+"/>");
+          $(".tictactoe-cell[id=" + cell_id + "]").append("<img class= tictactoe-icon-hover id = " + cell_id + " src="+circle_icon+" />");
         }
 
       }
