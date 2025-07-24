@@ -326,13 +326,10 @@
       if (x == 6) {
         x = 0;
       }
-      for (i = 0; i < size; i++) {
-        if (i == x) {
-          temp = Array.from(grid[i]);
-          temp[y] = symbol;
-          grid[i] = temp;
-        }
-      }
+
+      temp = Array.from(grid[x]);
+      temp[y] = symbol;
+      grid[x] = temp;
     }
 
     function check_gameend() {
