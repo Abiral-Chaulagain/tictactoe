@@ -30,38 +30,45 @@ body {
   height: auto;
   width: auto;
 }
-
+.body-content-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+  width: 30rem;
+}
 .tictactoe-wrapper {
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 3rem 3rem;
-  height: 16.6rem;
-  width: 16.6rem;
+  padding: 1rem 1rem;
+  height: auto;
+  width: auto;
 }
-.tictactoe-column-wrapper {
-  display: flex;
+.tictactoe-row-wrapper {
+  display: none;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 5rem;
-  width: 16.6rem;
+  width: auto;
 }
 
-.tictactoe-column {
+.tictactoe-row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   height: 100%;
 }
 .tictactoe-column-divider {
+  display: none;
   border: 0.3rem #36454f solid;
-  width: 100%;
   border-radius: 0.8rem;
-  width: 96%;
+  width: 100%;
 }
 .tictactoe-cell {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   height: 5rem;
@@ -79,16 +86,19 @@ body {
 }
 
 .tictactoe-row-divider {
+  display: none;
   border: 0.3rem #36454f solid;
 }
 
 .tictactoe-row-divider-top {
+  display: none;
   border: 0.3rem var(--ccolor) solid;
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
 }
 
 .tictactoe-row-divider-bot {
+  display: none;
   border: 0.3rem var(--ccolor) solid;
   border-bottom-left-radius: 0.8rem;
   border-bottom-right-radius: 0.8rem;
@@ -97,7 +107,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 .player-wrapper {
@@ -205,10 +215,10 @@ body {
 }
 
 .reset {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   position: absolute;
   background-color: var(--bcolor);
-  border: .1rem var(--ccolor) solid;
+  border: 0.1rem var(--ccolor) solid;
   border-radius: 1rem;
   cursor: grab;
 }
@@ -245,6 +255,17 @@ body {
 }
 
 .popup-btn {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  background-color: var(--popupcolor);
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.popup-size-btn {
   padding: 0.625rem 1.25rem;
   font-size: 1rem;
   border: none;
