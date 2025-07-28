@@ -30,7 +30,7 @@ body {
   height: auto;
   width: auto;
 }
-.body-content-wrapper{
+.body-content-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,6 +276,14 @@ body {
   transition: background-color 0.2s ease;
 }
 
-.popup-btn:hover {
-  background-color: #3e9744; /* fallback hover */
+.popup-player-btn {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  z-index: 100;
+  background-color: var(--popupcolor);
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
