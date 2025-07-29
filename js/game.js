@@ -1,7 +1,7 @@
 export class game {
     constructor() {
         this.size = null;
-        this.board = []
+        this.board = [];
         this.game_end = false;
         this.win = false;
         this.winner = "";
@@ -10,7 +10,7 @@ export class game {
     }
 
     starter(starting_player) {
-        this.current_player = starting_player
+        this.current_player = starting_player;
     }
 
     game(s) {
@@ -29,7 +29,7 @@ export class game {
         }
 
         //make the starting players div active
-        $("div[id=" + this.current_player + "]").toggleClass("player-wrapper-active player-active")
+        $("div[id=" + this.current_player + "]").toggleClass("player-wrapper-active player-active");
     }
 
     assign_symbols() {
@@ -48,12 +48,12 @@ export class game {
             this.current_player = "P1";
 
         //swap the active and non active player divs
-        $("div[id=P1]").toggleClass("player-wrapper-active player-active")
-        $("div[id=P2]").toggleClass("player-wrapper-active player-active")
+        $("div[id=P1]").toggleClass("player-wrapper-active player-active");
+        $("div[id=P2]").toggleClass("player-wrapper-active player-active");
     }
 
     get_player() {
-        return this.current_player
+        return this.current_player;
     }
 
     reduce_count() {
@@ -152,7 +152,7 @@ export class game {
 
     reset() {
         this.size = null;
-        this.board = []
+        this.board = [];
         this.game_end = false;
         this.win = false;
         this.winner = "";
@@ -160,3 +160,4 @@ export class game {
         this.current_player = "";
     }
 }
+

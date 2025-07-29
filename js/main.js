@@ -6,12 +6,12 @@ import { showpopup_gridsize, showpopup_player_selection, showpopup_slotfilled } 
 $(".popup-btn[id = gameend]").click(function () {
     $(".popup, .popup-overlay").fadeOut();
     reset_game();
-})
+});
 
 //for closing slotfilled popup
 $(".popup-btn[id = slotfilled]").click(function () {
     $(".popup, .popup-overlay").fadeOut();
-})
+});
 
 //on select size
 $(".popup-size-btn").click(function () {
@@ -29,11 +29,11 @@ $(".popup-player-btn").click(function () {
     assign_player_symbols(starting_player.get());
     $(".popup, .popup-overlay").fadeOut();
     showpopup_gridsize();
-})
+});
 
 $(".reset").on("click", function () {
     reset_game();
-})
+});
 
 //cell click
 $(".tictactoe-cell").on("click", function () {
@@ -49,7 +49,7 @@ $(".tictactoe-cell").on("click", function () {
         if (current_player == "P1") {
             s = P1.req_symbol();
         }
-        else if (current_player = "P2") {
+        else if (current_player == "P2") {
             s = P2.req_symbol();
         }
 
@@ -71,7 +71,7 @@ $(".tictactoe-cell").on("click", function () {
         showpopup_slotfilled();
         return;
     }
-})
+});
 
 //hover cell
 $(".tictactoe-cell").on("mouseenter", function () {
@@ -90,7 +90,7 @@ $(".tictactoe-cell").on("mouseenter", function () {
     else if (cur_player == "P2")
         symbol = P2.req_symbol();
     else
-        console.log("error")
+        console.log("error");
     //check if cell empty
     if (cell_array.c_array[y][x].get_occupation() == false) {
         if (symbol == "X")
@@ -106,11 +106,11 @@ $(".tictactoe-cell").on("mouseenter", function () {
     //hoverout
     $(".tictactoe-icon-hover[id=" + cell_id + "]").remove();
 
-})
+});
 
 
 $(function () {
     console.log("ready");
     showpopup_player_selection();
     board.grid();
-})
+});

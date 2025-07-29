@@ -10,7 +10,7 @@ export class grid {
         for (let i = 0; i < this.size; i++) {
             $(".tictactoe-row-wrapper[id=" + i + "]").toggle(function () {
                 //change css attribute to flex
-                $(this).css("display", "flex")
+                $(this).css("display", "flex");
             });
         }
         for (let i = 0; i < (this.size - 1); i++) {

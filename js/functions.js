@@ -72,8 +72,8 @@ export function get_coor(id) {
     if (x == 6)
         x = 0;
     let y = Math.floor(id / 6);
-    let a = [x, y]
-    return (a)
+    let a = [x, y];
+    return (a);
 }
 
 export function is_game_end(condition) {
