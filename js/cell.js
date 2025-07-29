@@ -8,7 +8,6 @@ export class cell {
 
     cell_activate() {
         $(".tictactoe-cell[id=" + this.id + "]").css("display", "flex");
-        console.log("activating cell", this.id)
     }
 
     get_id() {

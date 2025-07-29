@@ -57,7 +57,11 @@ export class game {
     }
 
     reduce_count() {
-        count--;
+        this.count = this.count - 1;
+    }
+
+    get_count() {
+        return this.count;
     }
 
     add_into_board(x, y, s) {

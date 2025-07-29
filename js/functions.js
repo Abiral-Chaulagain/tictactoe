@@ -51,8 +51,6 @@ export function assign_player_symbols(starting_player) {
 }
 
 export function on_select(s) {
-    console.log("new board");
-
     board.grid(s);
     newgame.game(s);
 
