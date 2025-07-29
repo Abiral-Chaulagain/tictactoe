@@ -7,7 +7,7 @@ export class cell {
     }
 
     cell_activate() {
-        $(".tictactoe-cell[id=" + id + "]").css("display", "flex");
+        $(".tictactoe-cell[id=" + this.id + "]").css("display", "flex");
     }
 
     get_id() {
